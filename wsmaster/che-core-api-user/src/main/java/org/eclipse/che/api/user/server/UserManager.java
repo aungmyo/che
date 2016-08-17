@@ -210,7 +210,7 @@ public class UserManager {
     }
 
     /**
-     * Finds user by given {@code email}.
+     * Finds all users {@code email}.
      *
      * @param maxItems
      *         the maximum number of users to return

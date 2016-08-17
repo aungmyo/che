@@ -226,7 +226,7 @@ public class UserManagerTest {
     public void shouldThrowIllegalArgumentExceptionsWhenGetAllUsersWithNegativeSkipCount() throws Exception {
         manager.getAll(30, -11);
     }
-U
+
     @Test(expectedExceptions = NullPointerException.class)
     public void shouldThrowNpeWhenRemovingUserByNullId() throws Exception {
         manager.remove(null);

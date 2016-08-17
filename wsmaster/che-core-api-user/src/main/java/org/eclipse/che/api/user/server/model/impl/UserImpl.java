@@ -51,7 +51,10 @@ import java.util.Objects;
                 @NamedQuery(name = "User.getByEmail",
                             query = "SELECT u FROM Usr u WHERE u.email = :email"),
                 @NamedQuery(name = "User.getAll",
-                            query = "SELECT u FROM Usr u")
+                            query = "SELECT u FROM Usr u"),
+                @NamedQuery(name = "User.getTotalCount",
+                            query = "SELECT COUNT(u) FROM Usr u")
+
         }
 )
 @EntityListeners(UserEntityListener.class)
