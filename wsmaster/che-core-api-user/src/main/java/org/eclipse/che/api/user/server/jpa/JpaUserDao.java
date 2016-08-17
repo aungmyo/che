@@ -182,9 +182,9 @@ public class JpaUserDao implements UserDao {
     }
 
     @Transactional
-    protected int getTotalCount() throws ServerException {
+    protected long getTotalCount() throws ServerException {
         try {
-            return managerProvider.get().createNamedQuery("User.getTotalCount", Long.class).getSingleResult().intValue();
+            return managerProvider.get().createNamedQuery("User.getTotalCount", Long.class).getSingleResult();
         } catch (RuntimeException x) {
             throw new ServerException(x.getLocalizedMessage(), x);
         }
