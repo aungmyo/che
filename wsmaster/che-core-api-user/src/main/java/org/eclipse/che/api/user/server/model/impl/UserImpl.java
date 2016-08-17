@@ -49,7 +49,9 @@ import java.util.Objects;
                 @NamedQuery(name = "User.getByName",
                             query = "SELECT u FROM Usr u WHERE u.name = :name"),
                 @NamedQuery(name = "User.getByEmail",
-                            query = "SELECT u FROM Usr u WHERE u.email = :email")
+                            query = "SELECT u FROM Usr u WHERE u.email = :email"),
+                @NamedQuery(name = "User.getAll",
+                            query = "SELECT u FROM Usr u")
         }
 )
 @EntityListeners(UserEntityListener.class)
