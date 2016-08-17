@@ -150,8 +150,14 @@ public class LocalUserDaoImpl implements UserDao {
 
     @Override
     public Page<UserImpl> getAll(int maxItems, int skipCount) throws ServerException {
-        return new Page<>(users.values().stream().skip(skipCount).limit(maxItems).collect(Collectors.toCollection(LinkedHashSet::new)),
-                          skipCount, maxItems, users.size());
+        return new Page<>(users.values()
+                               .stream()
+                               .skip(skipCount)
+                               .limit(maxItems)
+                               .collect(Collectors.toCollection(LinkedHashSet::new)),
+                          skipCount,
+                          maxItems,
+                          users.size());
     }
 
     private void checkConflicts(UserImpl user, String operation) throws ConflictException {
