@@ -108,10 +108,7 @@ public class UserImpl implements User {
 
     @Override
     public String getId() {
-        if (account != null) {
-            return account.getId();
-        }
-        return null;
+        return id;
     }
 
     @Override
