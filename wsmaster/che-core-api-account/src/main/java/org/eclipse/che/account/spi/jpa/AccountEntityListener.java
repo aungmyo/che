@@ -8,29 +8,30 @@
  * Contributors:
  *   Codenvy, S.A. - initial API and implementation
  *******************************************************************************/
-package org.eclipse.che.account.spi.tck;
+package org.eclipse.che.account.spi.jpa;
 
-import org.eclipse.che.account.spi.AccountDao;
+
+import org.eclipse.che.account.event.BeforeAccountRemovedEvent;
 import org.eclipse.che.account.spi.AccountImpl;
+import org.eclipse.che.api.core.notification.EventService;
 
-import javax.persistence.Entity;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import javax.persistence.PreRemove;
 
 /**
- * Simple implementation of {@link AccountImpl} for testing {@link AccountDao} interface
+ * Callback for {@link AccountImpl account} jpa related events.
  *
- * @author Sergii Leschenko.
+ * @author Anton Korneta.
  */
-@Entity(name = "TestAccount")
-public class TestAccountImpl extends AccountImpl {
-    public TestAccountImpl() {
-    }
+@Singleton
+public class AccountEntityListener {
 
-    public TestAccountImpl(String id, String name) {
-        super(id, name, "test");
-    }
+    @Inject
+    private EventService eventService;
 
-    @Override
-    public String getType() {
-        return "test";
+    @PreRemove
+    private void preRemove(AccountImpl account) {
+        eventService.publish(new BeforeAccountRemovedEvent(account));
     }
 }
