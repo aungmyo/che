@@ -198,6 +198,15 @@ public class UserDaoTest {
     }
 
     @Test
+    public void shouldReturnGetAllWithSkipCountAndMaxItems() throws Exception {
+        List<UserImpl> users = userDao.getAll(3, 0).getItems();
+        assertEquals(users.size(), 3);
+
+        users = userDao.getAll(3, 3).getItems();
+        assertEquals(users.size(), 2);
+    }
+
+    @Test
     public void shouldReturnEmptyListIfNoMoreUsers() throws Exception {
         List<UserImpl> users = userDao.getAll(1, 6).getItems();
         assertTrue(users.isEmpty());
